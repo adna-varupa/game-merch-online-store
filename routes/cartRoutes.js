@@ -4,8 +4,8 @@ const router = express.Router();
 const cartController = require('../controllers/cartController');
  
 router.post('/add', cartController.addToCart);       // Dodavanje proizvoda u korpu
-router.get('/get', cartController.getCartItems);      // Dobavljanje korisničke korpe
-router.put('/update', cartController.updateCart);     // Ažuriranje količine
-router.delete('/remove', cartController.removeFromCart); // Uklanjanje proizvoda
+router.get('/get', cartController.getAllCartItems);      // Dobavljanje korisničke korpe
+router.put('/update', cartController.updateCartItem);     // Ažuriranje količine
+router.delete('/remove', cartController.deleteCartItem); // Uklanjanje proizvoda
 
 module.exports = router;

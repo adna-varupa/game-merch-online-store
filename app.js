@@ -1,16 +1,18 @@
 // app.js
 const express = require('express');
+require('./models');
 const bodyParser = require('body-parser');
 const { Sequelize } = require('sequelize');
 const sequelize = require('./config/database'); // Povezivanje sa bazom
 const userRoutes = require('./routes/userRoutes'); // Importuj user rute
 const productRoutes = require('./routes/productRoutes'); // Importuj product rute
 const cartRoutes = require('./routes/cartRoutes'); // Importuj cart rute
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(bodyParser.json()); // Middleware za parsiranje JSON podataka
+app.use(bodyParser.json());  // Middleware za parsiranje JSON podataka
 
 // Testiranje konekcije sa bazom
 sequelize.authenticate()
@@ -26,6 +28,8 @@ sequelize.sync().then(() => {
     }).catch(err => {
     console.error('Error syncing database:', err);
     });
+
+app.use('/api/auth', authRoutes);  
 
 // Korisničke rute
 app.use('/api/users', userRoutes);

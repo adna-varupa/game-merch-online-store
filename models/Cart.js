@@ -1,39 +1,47 @@
-const { DataTypes, Model } = require('sequelize');  // Import Model from sequelize
-const sequelize = require('../config/database'); 
-const Product = require('./Product');
-const User = require('./User');
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/database'); // Update with your Sequelize instance
 
 class Cart extends Model {}
 
-Cart.init({
-    userId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: 'users',  // Ensure the model name matches the actual table name
-            key: 'id'
-        }
+Cart.init(
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+        },
+        userId: {
+            type: DataTypes.INTEGER,
+            field: 'user_id', // Maps to the database column 'user_id'
+            allowNull: false,
+        },
+        productId: {
+            type: DataTypes.INTEGER,
+            field: 'product_id', // Maps to the database column 'product_id'
+            allowNull: false,
+        },
+        quantity: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 1,
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            field: 'created_at', // Maps to 'created_at' in the database
+            defaultValue: DataTypes.NOW,
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            field: 'updated_at', // Maps to 'updated_at' in the database
+            defaultValue: DataTypes.NOW,
+        },
     },
-    productId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: 'products',  // Ensure the model name matches the actual table name
-            key: 'id'
-        }
-    },
-    quantity: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue: 1
+    {
+        sequelize,
+        modelName: 'Cart',
+        tableName: 'cart', // Match the table name
+        timestamps: true, // Enables automatic handling of 'createdAt' and 'updatedAt'
     }
-}, {
-    sequelize,   // Reference to the sequelize instance
-    modelName: 'Cart', // The name of the model
-    tableName: 'carts', // Ensure this matches your table name in the DB
-    timestamps: true  // Enable automatic createdAt/updatedAt fields
-});
-
-
+);
 
 module.exports = Cart;
