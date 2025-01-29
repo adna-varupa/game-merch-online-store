@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './LoginForm.css'; 
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
@@ -46,7 +47,10 @@ const LoginForm = () => {
           />
         </div>
         {error && <p>{error}</p>}
-        <button type="submit">Login</button>
+        <button type="submit" className="login-button">Login</button>
+        <p className="register-link">
+          Don't have an account? <a href="/register">Register</a>
+        </p>
       </form>
     </div>
   );

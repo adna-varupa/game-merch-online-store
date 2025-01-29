@@ -1,0 +1,36 @@
+button.register-button {
+    background: linear-gradient(135deg, #ff4081, #8e44ad);
+    color: white;
+    font-size: 1.4rem;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    font-weight: bold;
+    margin-top: 20px;
+    letter-spacing: 1px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Button Hover Effect */
+  button.register-button:hover {
+    background: linear-gradient(135deg, #ff6b81, #9b59b6);
+    transform: translateY(-6px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+  }
+  
+  /* Button Active State */
+  button.register-button:active {
+    background: linear-gradient(135deg, #ff6b81, #9b59b6);
+    transform: translateY(2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Button Focus Style */
+  button.register-button:focus {
+    outline: none;
+    box-shadow: 0 0 15px rgba(255, 64, 129, 0.8);
+  }
