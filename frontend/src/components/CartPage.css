@@ -123,3 +123,35 @@ body {
     cursor: pointer;
     transition: all 0.3s ease-in-out;
   }  
+
+  /* Back to Store Button Styling */
+.back-to-store-btn-floating {
+    position: fixed;
+    top: 20px;
+    left: 20px;  /* Position to the left side */
+    background: linear-gradient(135deg, #ff4081, #8e44ad);  /* Gradient background */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;  /* Rounded corners */
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  
+  .back-to-store-btn-floating:hover {
+    background: linear-gradient(135deg, #ff6b81, #9b59b6);  /* Lighter gradient on hover */
+    transform: translateY(-4px);  /* Slight lift effect on hover */
+  }
+  
+  .back-to-store-btn-floating:focus {
+    outline: none;
+  }
+  
+  /* Optional: Adding padding to the page so the button doesn't overlap with content */
+  .cart-page {
+    padding-left: 40px;  /* Adjust for left-side button */
+  }
+  

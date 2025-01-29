@@ -1,9 +1,22 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';  // Import useNavigate from react-router-dom
 import './CartPage.css';
 
 const CartPage = ({ cart }) => {
+  const navigate = useNavigate();  // Initialize useNavigate
+
+  // Function to navigate back to the store
+  const goBackToStore = () => {
+    navigate('/store');  // Adjust this to the correct route for your store page
+  };
+
   return (
     <div className="cart-page">
+      {/* Floating "Back to Store" Button */}
+      <button onClick={goBackToStore} className="back-to-store-btn-floating">
+        ↩ Back to Store
+      </button>
+
       <h1>Your Cart</h1>
       {cart.length === 0 ? (
         <p className="empty-cart">Your cart is empty. Time to fill it up!</p>
