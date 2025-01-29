@@ -7,10 +7,12 @@ const sequelize = require('./config/database'); // Povezivanje sa bazom
 const userRoutes = require('./routes/userRoutes'); // Importuj user rute
 const productRoutes = require('./routes/productRoutes'); // Importuj product rute
 const cartRoutes = require('./routes/cartRoutes'); // Importuj cart rute
-const authRoutes = require('./routes/authRoutes');
+const authRoutes = require('./routes/authroutes');
+const cors = require('cors');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+app.use(cors());
+const PORT = process.env.PORT || 3001;
 
 app.use(bodyParser.json());  // Middleware za parsiranje JSON podataka
 
