@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'; 
 import axios from 'axios';
 import './StorePage.css'; 
 import { useNavigate } from 'react-router-dom'; // Use useNavigate from react-router-dom
@@ -37,8 +37,9 @@ const StorePage = ({ cart, setCart }) => {
   };
 
   return (
-    <div>
-      <h1>Your Adventure Begins Here</h1>
+    <div className="store-container">
+      <h1 className="adventure-header">Your Adventure Begins Here! <span className="heart">⚔️</span></h1>
+
       <button onClick={viewCart} className="view-cart-button">View Cart ({cart.length})</button>
       
       <div className="product-list">
@@ -49,6 +50,7 @@ const StorePage = ({ cart, setCart }) => {
             <div key={product.id} className="product-card">
               <img src={product.image_url} alt={product.name} width="200" />
               <h2>{product.name}</h2>
+              <p className="category">{product.category}</p>
               <p>{product.description}</p>
               <p>Price: ${product.price}</p>
               <button onClick={() => addToCart(product)}>Add to Cart</button>
