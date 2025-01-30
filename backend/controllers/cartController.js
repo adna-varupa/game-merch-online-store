@@ -1,8 +1,8 @@
-const Cart = require('../models/Cart'); // Import the Cart model
-const Product = require('../models/Product'); // Import the Product model
-const User = require('../models/User'); // Import the User model
+const Cart = require('../models/Cart'); // Uvoz modela Cart
+const Product = require('../models/Product'); // Uvoz modela Product
+const User = require('../models/User'); // Uvoz modela User
 
-// Fetch all cart items
+// Dohvati sve stavke iz korpe
 const getAllCartItems = async (req, res) => {
     try {
         const cartItems = await Cart.findAll({
@@ -13,44 +13,44 @@ const getAllCartItems = async (req, res) => {
         });
         return res.status(200).json(cartItems);
     } catch (error) {
-        console.error('Error fetching cart items:', error);
-        return res.status(500).json({ message: 'Server error' });
+        console.error('Greška prilikom dohvaćanja stavki iz korpe:', error);
+        return res.status(500).json({ message: 'Greška na serveru' });
     }
 };
 
-// Add a new item to the cart
+// Dodaj novu stavku u korpu
 const addToCart = async (req, res) => {
     try {
         const { userId, productId, quantity } = req.body;
 
-        // Validate user and product existence
+        // Validacija postojanja korisnika i proizvoda
         const user = await User.findByPk(userId);
         const product = await Product.findByPk(productId);
 
         if (!user || !product) {
-            return res.status(404).json({ message: 'User or product not found' });
+            return res.status(404).json({ message: 'Korisnik ili proizvod nisu pronađeni' });
         }
 
-        // Check if the item already exists in the cart
+        // Provjera da li stavka već postoji u korpi
         let cartItem = await Cart.findOne({ where: { userId, productId } });
 
         if (cartItem) {
-            // Update the quantity if it exists
+            // Ažuriraj količinu ako stavka postoji
             cartItem.quantity += quantity;
             await cartItem.save();
         } else {
-            // Create a new cart item
+            // Kreiraj novu stavku u korpi
             cartItem = await Cart.create({ userId, productId, quantity });
         }
 
         return res.status(201).json(cartItem);
     } catch (error) {
-        console.error('Error adding to cart:', error);
-        return res.status(500).json({ message: 'Server error' });
+        console.error('Greška prilikom dodavanja u korpu:', error);
+        return res.status(500).json({ message: 'Greška na serveru' });
     }
 };
 
-// Update cart item
+// Ažuriraj stavku u korpi
 const updateCartItem = async (req, res) => {
     try {
         const { id } = req.params;
@@ -59,7 +59,7 @@ const updateCartItem = async (req, res) => {
         const cartItem = await Cart.findByPk(id);
 
         if (!cartItem) {
-            return res.status(404).json({ message: 'Cart item not found' });
+            return res.status(404).json({ message: 'Stavka u korpi nije pronađena' });
         }
 
         cartItem.quantity = quantity;
@@ -67,12 +67,12 @@ const updateCartItem = async (req, res) => {
 
         return res.status(200).json(cartItem);
     } catch (error) {
-        console.error('Error updating cart item:', error);
-        return res.status(500).json({ message: 'Server error' });
+        console.error('Greška prilikom ažuriranja stavke u korpi:', error);
+        return res.status(500).json({ message: 'Greška na serveru' });
     }
 };
 
-// Delete a cart item
+// Obriši stavku iz korpe
 const deleteCartItem = async (req, res) => {
     try {
         const { id } = req.params;
@@ -80,14 +80,14 @@ const deleteCartItem = async (req, res) => {
         const cartItem = await Cart.findByPk(id);
 
         if (!cartItem) {
-            return res.status(404).json({ message: 'Cart item not found' });
+            return res.status(404).json({ message: 'Stavka u korpi nije pronađena' });
         }
 
         await cartItem.destroy();
-        return res.status(200).json({ message: 'Cart item deleted successfully' });
+        return res.status(200).json({ message: 'Stavka iz korpe uspješno obrisana' });
     } catch (error) {
-        console.error('Error deleting cart item:', error);
-        return res.status(500).json({ message: 'Server error' });
+        console.error('Greška prilikom brisanja stavke iz korpe:', error);
+        return res.status(500).json({ message: 'Greška na serveru' });
     }
 };
 

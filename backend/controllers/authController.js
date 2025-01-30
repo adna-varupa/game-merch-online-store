@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-// Signup route (user registration)
+// Route for registration (user registration)
 const signup = async (req, res) => {
     const { username, password } = req.body;
 
@@ -20,20 +20,20 @@ const signup = async (req, res) => {
         // Hash the password before storing
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Create new user
+        // Create a new user
         const user = await User.create({
             username,
             password: hashedPassword,
         });
 
-        res.status(201).json({ message: 'User created successfully' });
+        res.status(201).json({ message: 'User successfully created' });
     } catch (error) {
         console.error('Error creating user:', error);
         res.status(500).json({ message: 'Error creating user' });
     }
 };
 
-// Login route (user login)
+// Route for login (user login)
 const login = async (req, res) => {
     const { username, password } = req.body;
 
@@ -47,7 +47,7 @@ const login = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
-        return res.status(400).json({ message: 'Invalid credentials' });
+        return res.status(400).json({ message: 'Invalid login credentials' });
     }
 
     // Generate JWT token
@@ -56,5 +56,5 @@ const login = async (req, res) => {
     res.status(200).json({ token });
 };
 
-// Export the functions
-module.exports = { login, signup }; 
+// Export functions
+module.exports = { login, signup };

@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';  // Import useNavigate
+import { useNavigate } from 'react-router-dom';  // Importuj useNavigate
 import './RegistrationForm.css'; 
 
 const RegistrationForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate();  // Initialize useNavigate
+  const navigate = useNavigate();  // Inicijalizuj useNavigate
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -17,10 +17,10 @@ const RegistrationForm = () => {
         username,
         password
       });
-      alert('Registration successful');
-      navigate('/login');  // Navigate to the login page after successful registration
+      alert('Registracija uspješna');
+      navigate('/login');  // Navigiraj ka login stranici nakon uspješne registracije
     } catch (err) {
-      setError('Error registering user');
+      setError('Greška pri registraciji korisnika');
     }
   };
 
@@ -46,7 +46,7 @@ const RegistrationForm = () => {
           />
         </div>
         {error && <p>{error}</p>}
-        <button type="submit" className="register-button">Register</button>
+        <button type="submit" className="register-button">Registruj se</button>
       </form>
     </div>
   );

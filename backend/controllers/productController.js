@@ -1,17 +1,17 @@
 const Product = require('../models/Product');
 
-// Retrieve all products
+// Dohvati sve proizvode
 const getAllProducts = async (req, res) => {
     try {
         const products = await Product.findAll();
         return res.status(200).json(products);
     } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error('Error while fetching products:', error);
         return res.status(500).json({ message: 'Server error' });
     }
 };
 
-// Retrieve a single product by ID
+// Dohvati pojedinačni proizvod prema ID-u
 const getProductById = async (req, res) => {
     try {
         const productId = req.params.id;
@@ -23,12 +23,12 @@ const getProductById = async (req, res) => {
 
         return res.status(200).json(product);
     } catch (error) {
-        console.error('Error fetching product:', error);
+        console.error('Error while fetching product:', error);
         return res.status(500).json({ message: 'Server error' });
     }
 };
 
-// Add a new product
+// Dodaj novi proizvod
 const addProduct = async (req, res) => {
     try {
         const { name, description, price, category, image_url } = req.body;
@@ -36,12 +36,12 @@ const addProduct = async (req, res) => {
         const newProduct = await Product.create({ name, description, price, category, image_url });
         return res.status(201).json(newProduct);
     } catch (error) {
-        console.error('Error adding product:', error);
+        console.error('Error while adding product:', error);
         return res.status(500).json({ message: 'Server error' });
     }
 };
 
-// Update an existing product
+// Ažuriraj postojeći proizvod
 const updateProduct = async (req, res) => {
     try {
         const productId = req.params.id;
@@ -56,12 +56,12 @@ const updateProduct = async (req, res) => {
         await product.update({ name, description, price, category, image_url });
         return res.status(200).json(product);
     } catch (error) {
-        console.error('Error updating product:', error);
+        console.error('Error while updating product:', error);
         return res.status(500).json({ message: 'Server error' });
     }
 };
 
-// Delete a product
+// Obriši proizvod
 const deleteProduct = async (req, res) => {
     try {
         const productId = req.params.id;
@@ -73,9 +73,9 @@ const deleteProduct = async (req, res) => {
         }
 
         await product.destroy();
-        return res.status(200).json({ message: 'Product deleted successfully' });
+        return res.status(200).json({ message: 'Product successfully deleted' });
     } catch (error) {
-        console.error('Error deleting product:', error);
+        console.error('Error while deleting product:', error);
         return res.status(500).json({ message: 'Server error' });
     }
 };

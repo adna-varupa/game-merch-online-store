@@ -3,27 +3,27 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginForm from './components/LoginForm';
 import RegistrationForm from './components/RegistrationForm';
 import StorePage from './components/StorePage';
-import CartPage from './components/CartPage'; // Import CartPage
+import CartPage from './components/CartPage'; // Uvezi CartPage
 
 const App = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const [cart, setCart] = useState([]); // Cart state to hold products in cart
+  const [cart, setCart] = useState([]); // State za korpu koja čuva proizvode u korpi
 
   return (
     <Router>
       <Routes>
-        {/* Login and Registration Routes */}
+        {/* Rute za prijavu i registraciju */}
         <Route path="/" element={<LoginForm setIsLogin={setIsLogin} />} />
         <Route path="/login" element={<LoginForm setIsLogin={setIsLogin} />} />
-        <Route path="/register" element={<RegistrationForm />} />  {/* Add registration route */}
+        <Route path="/register" element={<RegistrationForm />} />  {/* Dodaj rutu za registraciju */}
 
-        {/* Store and Cart Routes */}
+        {/* Rute za prodavnicu i korpu */}
         <Route 
           path="/store" 
-          element={<StorePage cart={cart} setCart={setCart} />} />  {/* Pass cart and setCart to StorePage */}
+          element={<StorePage cart={cart} setCart={setCart} />} />  {/* Proslijedi cart i setCart u StorePage */}
         <Route 
           path="/cart" 
-          element={<CartPage cart={cart} setCart={setCart} />} />  {/* Pass cart and setCart to CartPage */}
+          element={<CartPage cart={cart} setCart={setCart} />} />  {/* Proslijedi cart i setCart u CartPage */}
 
       </Routes>
     </Router>

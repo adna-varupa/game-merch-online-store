@@ -6,12 +6,12 @@ import { useNavigate } from 'react-router-dom';
 const CartPage = ({ cart, setCart }) => {
   const navigate = useNavigate();
 
-  // Function to navigate back to the store
+  // Funkcija za navigaciju nazad na prodavnicu
   const goBackToStore = () => {
-    navigate('/store'); // Adjust this to the correct route for your store page
+    navigate('/store'); // Prilagoditi ovu rutu prema tačnoj ruti vaše stranice prodavnice
   };
 
-  // Function to handle quantity change (increase or decrease)
+  // Funkcija za promjenu količine (povećanje ili smanjenje)
   const handleQuantityChange = (itemId, action) => {
     setCart(prevCart => {
       return prevCart.map(item => {
@@ -29,14 +29,14 @@ const CartPage = ({ cart, setCart }) => {
     });
   };
 
-  // Function to remove an item from the cart
+  // Funkcija za uklanjanje stavke iz korpe
   const handleRemoveItem = (itemId) => {
     setCart(prevCart => prevCart.filter(item => item.id !== itemId));
   };
 
   return (
     <div className="cart-page">
-      {/* Floating "Back to Store" Button */}
+      {/* Lebdeći dugme "Back to Store" */}
       <button onClick={goBackToStore} className="back-to-store-btn-floating">
         ↩ Back to Store
       </button>
@@ -58,7 +58,7 @@ const CartPage = ({ cart, setCart }) => {
                 <h2 className="cart-item-name">{item.name}</h2>
                 <p className="cart-item-price">Price: <strong>${item.price}</strong></p>
 
-                {/* Quantity controls */}
+                {/* Kontrole količine */}
                 <div className="cart-item-quantity">
                   <button 
                     className="quantity-btn" 
@@ -79,7 +79,7 @@ const CartPage = ({ cart, setCart }) => {
                   Total: <strong>${(item.price * item.quantity).toFixed(2)}</strong>
                 </p>
 
-                {/* Remove Item Button */}
+                {/* Dugme za uklanjanje stavke */}
                 <button 
                   className="remove-item-btn" 
                   onClick={() => handleRemoveItem(item.id)}

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'; 
 import axios from 'axios';
 import './StorePage.css'; 
-import { useNavigate } from 'react-router-dom'; // Use useNavigate from react-router-dom
+import { useNavigate } from 'react-router-dom'; // Koristi useNavigate iz react-router-dom
 
 const StorePage = ({ cart, setCart }) => {
   const [products, setProducts] = useState([]);
-  const navigate = useNavigate();  // Initialize useNavigate
+  const navigate = useNavigate();  // Inicijalizuj useNavigate
 
   useEffect(() => {
     axios.get('http://localhost:3001/api/products/get')  
@@ -17,7 +17,7 @@ const StorePage = ({ cart, setCart }) => {
       });
   }, []);
 
-  // Function to handle adding products to the cart
+  // Funkcija za dodavanje proizvoda u korpu
   const addToCart = (product) => {
     setCart(prevCart => {
       const existingProduct = prevCart.find(item => item.id === product.id);
@@ -31,14 +31,14 @@ const StorePage = ({ cart, setCart }) => {
     });
   };
 
-  // Function to navigate to the cart page
+  // Funkcija za navigaciju do stranice sa korpom
   const viewCart = () => {
-    navigate('/cart'); // Navigate to cart page using useNavigate
+    navigate('/cart'); // Navigacija do stranice sa korpom pomoću useNavigate
   };
 
   return (
     <div className="store-container">
-      <h1 className="adventure-header">Your Adventure Begins Here! <span className="heart">⚔️</span></h1>
+      <h1 className="adventure-header">Your adventure begins here! <span className="heart">⚔️</span></h1>
 
       <button onClick={viewCart} className="view-cart-button">View Cart ({cart.length})</button>
       
