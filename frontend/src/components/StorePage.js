@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'; 
 import axios from 'axios';
 import './StorePage.css'; 
-import { useNavigate } from 'react-router-dom'; // Koristi useNavigate iz react-router-dom
+import { useNavigate } from 'react-router-dom'; 
 
 const StorePage = ({ cart, setCart }) => {
   const [products, setProducts] = useState([]);
-  const navigate = useNavigate();  // Inicijalizuj useNavigate
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     axios.get('http://localhost:3001/api/products/get')  
@@ -33,7 +33,7 @@ const StorePage = ({ cart, setCart }) => {
 
   // Funkcija za navigaciju do stranice sa korpom
   const viewCart = () => {
-    navigate('/cart'); // Navigacija do stranice sa korpom pomoću useNavigate
+    navigate('/cart'); 
   };
 
   return (
